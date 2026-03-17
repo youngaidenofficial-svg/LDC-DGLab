@@ -1,0 +1,16 @@
+{
+  "name": "dglab-pay-pulse-site",
+  "private": true,
+  "version": "0.1.0",
+  "description": "支付解锁后控制 DG-LAB 郊狼3.0（多人控制同一设备）",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node server/index.js"
+  },
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "express": "^5.2.1",
+    "uuid": "^13.0.0",
+    "ws": "^8.19.0"
+  }
+}

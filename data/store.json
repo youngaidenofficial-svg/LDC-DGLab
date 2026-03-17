@@ -1,0 +1,168 @@
+{
+  "version": 1,
+  "orders": {
+    "M1773593957406-9a4f0542": {
+      "outTradeNo": "M1773593957406-9a4f0542",
+      "token": "1f58dc1fe86f4ad69e4b2c61af883559",
+      "roomId": "b5d80e1a-8790-4ec0-acc2-80ab447733f9",
+      "name": "DG-LAB 脉冲控制解锁",
+      "money": "10",
+      "status": "paid",
+      "createdAt": "2026-03-15T16:59:17.406Z",
+      "paidAt": "2026-03-15T16:59:17.406Z",
+      "unlockUntil": "2026-03-15T17:29:17.406Z",
+      "tradeNo": "DEV"
+    },
+    "M1773760113257-2a3f507e": {
+      "outTradeNo": "M1773760113257-2a3f507e",
+      "token": "44a9406defa3437eaf8aabc4fcdd29a7",
+      "roomId": "bd6819bf-1f49-4716-a859-77df58b75b7c",
+      "name": "DG-LAB 脉冲控制解锁",
+      "money": "10",
+      "status": "paid",
+      "createdAt": "2026-03-17T15:08:33.257Z",
+      "paidAt": "2026-03-17T15:08:33.257Z",
+      "unlockUntil": "2026-03-17T15:38:33.257Z",
+      "tradeNo": "DEV"
+    },
+    "M1773760338619-d88a3b34": {
+      "outTradeNo": "M1773760338619-d88a3b34",
+      "token": "c5f0d5ad4e904b00bc61d6fa3ecd23bb",
+      "roomId": "bd6819bf-1f49-4716-a859-77df58b75b7c",
+      "name": "DG-LAB 脉冲控制解锁",
+      "money": "10",
+      "status": "paid",
+      "createdAt": "2026-03-17T15:12:18.619Z",
+      "paidAt": "2026-03-17T15:12:18.619Z",
+      "unlockUntil": "2026-03-17T15:42:18.619Z",
+      "tradeNo": "DEV"
+    },
+    "M1773760617675-40d2ea84": {
+      "outTradeNo": "M1773760617675-40d2ea84",
+      "token": "aa0f14cfaec94fb7a60882a97989b7a1",
+      "roomId": "2f471f34-e8bb-4662-8fdf-7474026c8869",
+      "name": "DG-LAB 脉冲控制解锁",
+      "money": "10",
+      "status": "paid",
+      "createdAt": "2026-03-17T15:16:57.675Z",
+      "paidAt": "2026-03-17T15:16:57.675Z",
+      "unlockUntil": "2026-03-17T15:46:57.675Z",
+      "tradeNo": "DEV"
+    }
+  },
+  "tokenIndex": {
+    "1f58dc1fe86f4ad69e4b2c61af883559": "M1773593957406-9a4f0542",
+    "44a9406defa3437eaf8aabc4fcdd29a7": "M1773760113257-2a3f507e",
+    "c5f0d5ad4e904b00bc61d6fa3ecd23bb": "M1773760338619-d88a3b34",
+    "aa0f14cfaec94fb7a60882a97989b7a1": "M1773760617675-40d2ea84"
+  },
+  "rooms": {
+    "98505700-b97b-4cdd-a61c-fb01fc18f07a": {
+      "roomId": "98505700-b97b-4cdd-a61c-fb01fc18f07a",
+      "hostKey": "221aa2cc93244b929eecc63941f2e786",
+      "terminalId": "482041e5-3d84-45a0-bf83-4ee978bc0d60",
+      "createdAt": "2026-03-15T16:55:32.692Z"
+    },
+    "b5d80e1a-8790-4ec0-acc2-80ab447733f9": {
+      "roomId": "b5d80e1a-8790-4ec0-acc2-80ab447733f9",
+      "hostKey": "46755c6e687b4e90bedccec4a6da7637",
+      "terminalId": "14ab0b9b-806b-4433-911e-df0f3f7d77df",
+      "createdAt": "2026-03-15T16:59:17.286Z"
+    },
+    "6e1a4160-c3b8-433d-9028-370e4a5600a4": {
+      "roomId": "6e1a4160-c3b8-433d-9028-370e4a5600a4",
+      "hostKey": "4eec43daefa14fb485f5aab9338872ab",
+      "terminalId": "3171b964-b20c-40f1-b4aa-8d0d8e54de41",
+      "createdAt": "2026-03-16T15:37:56.286Z"
+    },
+    "84d4052b-eab7-49f6-8aa3-7759f0f44c5c": {
+      "roomId": "84d4052b-eab7-49f6-8aa3-7759f0f44c5c",
+      "hostKey": "1cde7be19715492581515d76f81df072",
+      "terminalId": "fe65da3b-3322-4a0c-843c-10bb99965d61",
+      "createdAt": "2026-03-16T15:39:24.706Z"
+    },
+    "46b9d6ef-8960-49e4-95fd-d71b63ff71ac": {
+      "roomId": "46b9d6ef-8960-49e4-95fd-d71b63ff71ac",
+      "hostKey": "6704026f2d934681a9082d8efd98d832",
+      "terminalId": "57eca618-cb19-4a70-99dd-94c4b74e5cb5",
+      "createdAt": "2026-03-16T15:39:45.597Z"
+    },
+    "8fdf8078-0e02-4906-8d2a-efe045238f65": {
+      "roomId": "8fdf8078-0e02-4906-8d2a-efe045238f65",
+      "hostKey": "01b35f9a94cf4421952bd53828361da7",
+      "terminalId": "382fccf6-e45f-46ae-9435-a0b87cc3382d",
+      "createdAt": "2026-03-17T14:34:55.218Z"
+    },
+    "b2822c0d-4774-4b75-9c93-78ad0c90cc8f": {
+      "roomId": "b2822c0d-4774-4b75-9c93-78ad0c90cc8f",
+      "hostKey": "16b5faf47c7943508f31a09a62d51607",
+      "terminalId": "5b70d6d8-b890-4aa0-8312-7aa60872e96c",
+      "createdAt": "2026-03-17T14:37:47.409Z"
+    },
+    "1859cf7a-7b52-43c0-8fe2-1156723da859": {
+      "roomId": "1859cf7a-7b52-43c0-8fe2-1156723da859",
+      "hostKey": "27fda03e14ec4b1bbefe53715cb4a4b9",
+      "terminalId": "2103d1de-d569-4e07-9103-8161ec5a0d87",
+      "createdAt": "2026-03-17T14:40:37.695Z"
+    },
+    "88d5c02c-2231-4fad-aae4-2e7cbcc901cf": {
+      "roomId": "88d5c02c-2231-4fad-aae4-2e7cbcc901cf",
+      "hostKey": "7743c940cd414d11b6d817845aa7eb3e",
+      "terminalId": "84c55307-8a08-4a3b-8cf6-5cada7732522",
+      "createdAt": "2026-03-17T14:44:14.440Z"
+    },
+    "310ffcac-90e2-46c9-ba8b-034337ae1012": {
+      "roomId": "310ffcac-90e2-46c9-ba8b-034337ae1012",
+      "hostKey": "80096eefaac04997b72b99e0f6e0e554",
+      "terminalId": "f0a4859d-ec61-494c-8637-7a6690666807",
+      "createdAt": "2026-03-17T14:50:35.758Z"
+    },
+    "778d4b49-7074-488b-a480-9394f0762d7e": {
+      "roomId": "778d4b49-7074-488b-a480-9394f0762d7e",
+      "hostKey": "85907ba3f91143d49f289feab4b1c31f",
+      "terminalId": "9d3c2dab-6bd1-446d-9cec-ba7a3f731e76",
+      "createdAt": "2026-03-17T14:51:56.547Z"
+    },
+    "4cc2c9e8-a6f8-46fe-b565-22d4c0e0c63f": {
+      "roomId": "4cc2c9e8-a6f8-46fe-b565-22d4c0e0c63f",
+      "hostKey": "eee43f6aa1aa4a7490fddd77ae2cb3f2",
+      "terminalId": "5f2e8f59-efd9-4b7b-8a59-702c0fd65c0b",
+      "createdAt": "2026-03-17T15:06:30.657Z"
+    },
+    "bd6819bf-1f49-4716-a859-77df58b75b7c": {
+      "roomId": "bd6819bf-1f49-4716-a859-77df58b75b7c",
+      "hostKey": "815f7ee445d44a89adadf7b3f0bf9d75",
+      "terminalId": "09a4bbf9-15a6-42aa-95b0-2f4917e21b78",
+      "createdAt": "2026-03-17T15:08:03.966Z"
+    },
+    "ce2ef1db-b6f2-422e-9e3e-4898dada5246": {
+      "roomId": "ce2ef1db-b6f2-422e-9e3e-4898dada5246",
+      "hostKey": "ca217ea679ff4f3493c56548f20dc3b7",
+      "terminalId": "52745b0d-51ca-4948-a316-f95855f8dc80",
+      "createdAt": "2026-03-17T15:15:37.595Z"
+    },
+    "2f471f34-e8bb-4662-8fdf-7474026c8869": {
+      "roomId": "2f471f34-e8bb-4662-8fdf-7474026c8869",
+      "hostKey": "f1af5e4248ca489a883bf8210bc8699c",
+      "terminalId": "109f685d-ba83-4031-82c5-56e4d9dc4a81",
+      "createdAt": "2026-03-17T15:16:41.048Z"
+    }
+  },
+  "terminalIndex": {
+    "482041e5-3d84-45a0-bf83-4ee978bc0d60": "98505700-b97b-4cdd-a61c-fb01fc18f07a",
+    "14ab0b9b-806b-4433-911e-df0f3f7d77df": "b5d80e1a-8790-4ec0-acc2-80ab447733f9",
+    "3171b964-b20c-40f1-b4aa-8d0d8e54de41": "6e1a4160-c3b8-433d-9028-370e4a5600a4",
+    "fe65da3b-3322-4a0c-843c-10bb99965d61": "84d4052b-eab7-49f6-8aa3-7759f0f44c5c",
+    "57eca618-cb19-4a70-99dd-94c4b74e5cb5": "46b9d6ef-8960-49e4-95fd-d71b63ff71ac",
+    "382fccf6-e45f-46ae-9435-a0b87cc3382d": "8fdf8078-0e02-4906-8d2a-efe045238f65",
+    "5b70d6d8-b890-4aa0-8312-7aa60872e96c": "b2822c0d-4774-4b75-9c93-78ad0c90cc8f",
+    "2103d1de-d569-4e07-9103-8161ec5a0d87": "1859cf7a-7b52-43c0-8fe2-1156723da859",
+    "84c55307-8a08-4a3b-8cf6-5cada7732522": "88d5c02c-2231-4fad-aae4-2e7cbcc901cf",
+    "f0a4859d-ec61-494c-8637-7a6690666807": "310ffcac-90e2-46c9-ba8b-034337ae1012",
+    "9d3c2dab-6bd1-446d-9cec-ba7a3f731e76": "778d4b49-7074-488b-a480-9394f0762d7e",
+    "5f2e8f59-efd9-4b7b-8a59-702c0fd65c0b": "4cc2c9e8-a6f8-46fe-b565-22d4c0e0c63f",
+    "09a4bbf9-15a6-42aa-95b0-2f4917e21b78": "bd6819bf-1f49-4716-a859-77df58b75b7c",
+    "52745b0d-51ca-4948-a316-f95855f8dc80": "ce2ef1db-b6f2-422e-9e3e-4898dada5246",
+    "109f685d-ba83-4031-82c5-56e4d9dc4a81": "2f471f34-e8bb-4662-8fdf-7474026c8869"
+  }
+}

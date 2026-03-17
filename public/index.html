@@ -1,0 +1,222 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>DG-LAB 脉冲控制</title>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <header class="header">
+    <div>
+      <h1>DG-LAB 脉冲控制</h1>
+      <p class="sub">流程：房主创建房间 → 设备持有者用 DG-LAB APP 扫码连接 → 控制者支付解锁 → 手动发送波形</p>
+    </div>
+    <div class="right">
+      <a class="btn btn-light" href="/">回到首页</a>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="card" id="globalInfo">
+      <div class="row wrap">
+        <div>
+          <div class="k">当前站点</div>
+          <div class="v" id="baseUrl">-</div>
+        </div>
+        <div>
+          <div class="k">解锁时长</div>
+          <div class="v"><span id="unlockMinutes">-</span> 分钟</div>
+        </div>
+        <div>
+          <div class="k">支付金额</div>
+          <div class="v"><span id="money">-</span></div>
+        </div>
+        <div>
+          <div class="k">模式</div>
+          <div class="v" id="mode">-</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="createRoomCard">
+      <h2>创建房间（设备持有者/房主）</h2>
+      <p class="muted">创建后会生成一个二维码，让设备持有者在 DG-LAB APP 的 SOCKET 功能中扫码连接。</p>
+      <button class="btn" id="btnCreateRoom">创建房间</button>
+      <div class="divider"></div>
+      <div id="createRoomResult" class="hidden">
+        <div class="row wrap">
+          <div class="grow">
+            <div class="k">房间链接（分享给控制者）</div>
+            <div class="row">
+              <input class="input grow" id="shareUrl" readonly />
+              <button class="btn btn-light" data-copy="#shareUrl">复制</button>
+            </div>
+            <div class="k" style="margin-top:10px;">房主链接（请妥善保存，可重新打开二维码）</div>
+            <div class="row">
+              <input class="input grow" id="hostUrl" readonly />
+              <button class="btn btn-light" data-copy="#hostUrl">复制</button>
+            </div>
+          </div>
+          <div class="qr">
+            <div class="k">给 DG-LAB APP 扫码</div>
+            <div id="hostQr"></div>
+            <div class="muted small" id="wsUrlText"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="card hidden" id="roomCard">
+      <h2>房间</h2>
+      <div class="row wrap">
+        <div>
+          <div class="k">房间ID</div>
+          <div class="v" id="roomId">-</div>
+        </div>
+        <div>
+          <div class="k">设备连接状态</div>
+          <div class="v" id="appStatus">-</div>
+        </div>
+        <div>
+          <div class="k">控制者人数</div>
+          <div class="v" id="controllerCount">0</div>
+        </div>
+        <div>
+          <div class="k">观众人数</div>
+          <div class="v" id="viewerCount">0</div>
+        </div>
+      </div>
+      <div class="divider"></div>
+
+      <div id="hostSection" class="hidden">
+        <h3>房主面板（仅房主链接可见）</h3>
+        <p class="muted">请在 DG-LAB APP → SOCKET 扫描下方二维码连接服务器，然后在 APP 中绑定成功后，控制者即可发送波形。</p>
+        <div class="row wrap">
+          <div class="qr">
+            <div class="k">给 DG-LAB APP 扫码</div>
+            <div id="hostQr2"></div>
+            <div class="muted small" id="wsUrlText2"></div>
+          </div>
+          <div class="grow">
+            <div class="k">房间链接（分享给控制者）</div>
+            <div class="row">
+              <input class="input grow" id="shareUrl2" readonly />
+              <button class="btn btn-light" data-copy="#shareUrl2">复制</button>
+            </div>
+          </div>
+        </div>
+        <div class="divider"></div>
+      </div>
+
+      <div id="controllerSection">
+        <h3>控制者面板</h3>
+
+        <div class="row wrap">
+          <div class="grow">
+            <div class="k">当前 token</div>
+            <div class="row">
+              <input class="input grow" id="token" placeholder="支付后会自动写入" />
+              <button class="btn btn-light" id="btnSaveToken">保存</button>
+              <button class="btn btn-light" id="btnClearToken">清除</button>
+            </div>
+            <p class="muted small">提示：token 具备控制权限，请勿泄露。</p>
+          </div>
+          <div>
+            <div class="k">解锁状态</div>
+            <div class="v" id="unlockStatus">未解锁</div>
+            <div class="muted small" id="unlockRemain">-</div>
+            <div class="row" style="margin-top:8px; gap:8px;">
+              <button class="btn" id="btnPay">支付解锁</button>
+              <button class="btn btn-light" id="btnRefresh">刷新状态</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="row wrap">
+          <div class="grow">
+            <h4>发送波形（脉冲）</h4>
+            <div class="row wrap">
+              <label class="field">
+                <span>通道</span>
+                <select id="pulseChannel" class="input">
+                  <option value="A">A</option>
+                  <option value="B">B</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>波形预设</span>
+                <select id="pulsePreset" class="input"></select>
+              </label>
+              <label class="field">
+                <span>持续（秒）</span>
+                <input id="pulseTime" class="input" type="number" min="1" max="10" value="5" />
+              </label>
+              <button class="btn" id="btnSendPulse">发送波形</button>
+              <button class="btn btn-danger" id="btnStop">急停</button>
+            </div>
+            <details style="margin-top:10px;">
+              <summary>高级：自定义波形 JSON 数组</summary>
+              <textarea id="pulseCustom" class="textarea" rows="4" placeholder='例如：["0A0A0A0A00000000","0A0A0A0A64646464"]'></textarea>
+              <div class="muted small">如果填写了自定义波形，将优先使用自定义内容。</div>
+            </details>
+          </div>
+
+          <div class="grow">
+            <h4>强度控制</h4>
+            <div class="row wrap">
+              <div class="strength">
+                <div class="k">A 通道</div>
+                <div class="row">
+                  <button class="btn btn-light" data-strength="dec" data-ch="1">-1</button>
+                  <button class="btn btn-light" data-strength="inc" data-ch="1">+1</button>
+                  <input class="input" type="number" min="0" max="200" value="0" id="setA" style="width:90px;" />
+                  <button class="btn btn-light" data-strength="set" data-ch="1" data-input="#setA">设置</button>
+                </div>
+              </div>
+              <div class="strength">
+                <div class="k">B 通道</div>
+                <div class="row">
+                  <button class="btn btn-light" data-strength="dec" data-ch="2">-1</button>
+                  <button class="btn btn-light" data-strength="inc" data-ch="2">+1</button>
+                  <input class="input" type="number" min="0" max="200" value="0" id="setB" style="width:90px;" />
+                  <button class="btn btn-light" data-strength="set" data-ch="2" data-input="#setB">设置</button>
+                </div>
+              </div>
+            </div>
+            <div class="divider"></div>
+            <h4>设备回传</h4>
+            <div class="row wrap">
+              <div>
+                <div class="k">A 当前强度</div>
+                <div class="v" id="strengthA">-</div>
+              </div>
+              <div>
+                <div class="k">B 当前强度</div>
+                <div class="v" id="strengthB">-</div>
+              </div>
+              <div>
+                <div class="k">A 软上限</div>
+                <div class="v" id="softA">-</div>
+              </div>
+              <div>
+                <div class="k">B 软上限</div>
+                <div class="v" id="softB">-</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+        <h3>日志</h3>
+        <pre class="log" id="log"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="/vendor/qrcode.min.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
