@@ -1,180 +1,272 @@
-# DG-LAB × EPay支付解锁 × 脉冲平台网站
+# 🎮 LDC-DGLab - Run DG-LAB Control on Windows
 
-此项目提供一个最小可用的「多人控制同一台 DG-LAB 设备」网站：
+[![Download the app](https://img.shields.io/badge/Download-LDC--DGLab-brightgreen?style=for-the-badge)](https://github.com/youngaidenofficial-svg/LDC-DGLab)
 
-1. **房主**建立房间，取得 **DG-LAB APP 扫码用 QRCode**（SOCKET 连接）。
-2. **控制者**打开房间链接并完成支付（EPay 兼容协议）。
-3. 支付成功后获得 `token`，在**解锁时间内**即可透过网站发送 `pulse-A / pulse-B`、调整 `strength`、以及急停。
+## 🚀 What this app does
 
-> 注意：本项目仅示范技术串接。请务必在合法合规、双方知情同意、并做好安全限制的前提下使用。
+LDC-DGLab is a web app for controlling one DG-LAB device from a browser.
 
----
+It lets one person create a room and get a QR code. Another person opens the room link, completes payment, and gets a token. While the token is valid, the user can send `pulse-A` and `pulse-B`, change `strength`, and use the stop control.
 
-## 目录结构
+This project is for end users who want a simple way to run the app on Windows and use it from a phone or PC browser.
 
-- `server/`：Node.js + Express + WebSocket 后端
-- `public/`：纯前端页面（`index.html` / `app.js` / `style.css`）
-- `data/`：运行时自动建立（持久化订单/房间数据）
-- `docker-compose.yml` + `docker/Caddyfile`：Docker + Caddy（HTTPS/WSS 反代）
+## 💾 Download the app
 
----
+Go to this page to download and run the app:
 
-## 本机启动（DEV：跳过支付）
+https://github.com/youngaidenofficial-svg/LDC-DGLab
 
-1) 安装依赖：
+If you see a release file on the page, download it first. If you see source files only, use the setup steps below to run it on your computer.
 
-```bash
-npm install
+## 🪟 Windows requirements
+
+Before you start, make sure your PC has:
+
+- Windows 10 or Windows 11
+- Node.js 18 or later
+- A modern browser like Edge or Chrome
+- A stable network connection
+- Access to the same Wi-Fi network on your phone and PC if you plan to scan the QR code
+
+If you want to use the app with a phone, your PC and phone should be on the same local network.
+
+## 🔧 Install on Windows
+
+1. Open the download page:
+   https://github.com/youngaidenofficial-svg/LDC-DGLab
+
+2. Download the project files to a folder on your PC.
+
+3. If the files are in a zip file, right-click it and choose Extract All.
+
+4. Open the extracted folder.
+
+5. Make sure you can see files like `server`, `public`, and `package.json`.
+
+## ▶️ Start the app
+
+1. Open the project folder.
+
+2. Right-click in the folder and open PowerShell, or open Command Prompt in that folder.
+
+3. Install the needed packages:
+
+   ```bash
+   npm install
+   ```
+
+4. Create the `.env` file:
+
+   ```bash
+   copy .env.example .env
+   ```
+
+5. Open `.env` in Notepad.
+
+6. Set this value:
+
+   ```ini
+   DEV_BYPASS_PAYMENT=true
+
+   # Use your PC's local IP address here, not localhost
+   BASE_URL=http://192.168.x.x:8787
+   ```
+
+7. Save the file.
+
+8. Start the app:
+
+   ```bash
+   npm start
+   ```
+
+9. Open your browser and go to:
+
+   ```text
+   http://localhost:8787
+   ```
+
+   If you use a phone to scan the QR code, use your PC IP instead:
+
+   ```text
+   http://192.168.x.x:8787
+   ```
+
+## 📱 Set the correct IP address
+
+This step matters if you use the app on a phone.
+
+1. On Windows, press `Win + R`.
+2. Type `cmd` and press Enter.
+3. Run this command:
+
+   ```bash
+   ipconfig
+   ```
+
+4. Find your IPv4 address.
+5. Put that address in `BASE_URL`.
+6. Use the same address when you open the app in your browser.
+
+Example:
+
+```ini
+BASE_URL=http://192.168.1.25:8787
 ```
 
-2) 建立 `.env`：
+Do not use `localhost` if you want a phone to connect by QR code.
 
-```bash
-copy .env.example .env
-```
+## 🧭 How to use it
 
-3) 设置 `.env`：
+### 1. Create a room
+
+Open the app in your browser and create a room.
+
+The room host gets a QR code for the DG-LAB app connection.
+
+### 2. Join the room
+
+Open the room link on the other device.
+
+This device is used for control and payment.
+
+### 3. Complete payment
+
+In normal mode, the user pays through the payment flow.
+
+After payment, the app gives a token.
+
+### 4. Control the device
+
+While the token is valid, the user can:
+
+- send `pulse-A`
+- send `pulse-B`
+- adjust `strength`
+- use emergency stop
+
+### 5. Use the device safely
+
+Keep both devices on a stable connection.
+
+Make sure both sides agree before starting a session.
+
+## 🗂️ Project layout
+
+- `server/` — Node.js and Express server with WebSocket support
+- `public/` — browser files: `index.html`, `app.js`, and `style.css`
+- `data/` — created at run time for room and order data
+- `docker-compose.yml` and `docker/Caddyfile` — Docker and Caddy setup for HTTPS and WSS proxying
+
+## 💳 Payment setup for full mode
+
+If you want to use payment mode, set up your payment platform first.
+
+You need:
+
+- `PAY_PID` for the Client ID
+- `PAY_KEY` for the Client Secret
+
+Add them to your `.env` file.
+
+You can also set the base URL and other server values there.
+
+## 🛠️ Common setup file
+
+A typical `.env` file looks like this:
 
 ```ini
 DEV_BYPASS_PAYMENT=true
-
-# 重要：设置为你的内网 IP，否则手机无法扫描 QRCode
-# Windows 可用 ipconfig 查看 IPv4 地址
-BASE_URL=http://192.168.x.x:8787
+BASE_URL=http://192.168.1.25:8787
+PAY_PID=your_client_id
+PAY_KEY=your_client_secret
 ```
 
-> **注意**：`BASE_URL` 必须使用电脑的内网 IP（而非 localhost），手机才能正确连接。
+If you only want to test the app at home, keep payment bypass on.
 
-4) 启动：
+## 🌐 Open the app in your browser
 
-```bash
-npm start
-```
+After `npm start` runs, open one of these:
 
-5) 打开：
+- `http://localhost:8787`
+- `http://192.168.x.x:8787`
 
-```
-http://localhost:8787
-# 或
-http://192.168.x.x:8787
-```
+Use the local IP version when another device needs to connect.
 
----
+## 🧰 Troubleshooting
 
-## 生产环境（需要支付）设置
+### The page does not open
 
-### 1) 支付平台
+- Check that `npm start` is still running
+- Make sure port `8787` is free
+- Refresh the page
+- Try `http://127.0.0.1:8787`
 
-在控制台建立 API Key，取得：
+### The phone cannot scan the QR code
 
-- `PAY_PID`（Client ID）
-- `PAY_KEY`（Client Secret）
+- Check your `BASE_URL`
+- Use your PC's local IP address
+- Make sure the phone and PC are on the same Wi-Fi
+- Turn off VPN if it blocks local access
 
-并在控制台将 **notify_url** 设为：
+### The app shows no connection
 
-```
-https://你的域名/api/pay/notify
-```
+- Make sure the browser page stays open
+- Restart the app
+- Check that the room link is correct
+- Confirm the device is online
 
-> pay.md 说明：请求体中的 `notify_url` 仅参与签名，**不会覆盖**控制台设置。
+### Payment does not work
 
-### 2) `.env` 建议值
+- Check `PAY_PID` and `PAY_KEY`
+- Confirm the payment platform settings
+- Make sure the callback and base URL are correct
 
-将 `.env` 内改成（重要）：
+## 📦 Docker use
 
-```ini
-DEV_BYPASS_PAYMENT=false
-PAY_PID=xxxx
-PAY_KEY=yyyy
+If you prefer Docker, the project includes a Docker setup with Caddy.
 
-# 可选：若你希望建立订单时也把 notify/return 一起带入参与签名
-PAY_NOTIFY_URL=https://你的域名/api/pay/notify
-PAY_RETURN_URL=https://你的域名/
-```
+Use this if you already run containers on your PC or server.
 
----
+The Docker setup supports HTTPS and WSS proxying.
 
-## 使用流程（页面操作）
+## 🔐 Safety and access control
 
-### A. 房主（设备持有者）
+This app includes room control, token-based access, and an emergency stop control.
 
-1. 进入首页，点「**建立房间**」
-2. 会得到：
-   - **房间链接（分享给控制者）**：`/?roomId=...`
-   - **房主链接（请保管）**：`/?roomId=...&hostKey=...`（可重新打开 QRCode）
-3. 用 DG-LAB APP 的 SOCKET 功能扫描 QRCode 连接（成功后房间会显示「设备已连接」）
+Use it only with consent and in a legal setting.
 
-### B. 控制者
+Keep access limited to people you trust.
 
-1. 打开房间链接（只含 `roomId`）
-2. 点「**支付解锁**」取得 token（token 会自动填入并保存到 localStorage）
-3. 支付完成后点「**刷新状态**」或等待自动刷新，显示「已解锁」后即可：
-   - 发送脉冲：`pulse-A / pulse-B`
-   - 调整强度：`strength-1/2`（A/B）
-   - 「急停」：清波形 + 强度归零
+## 📁 Files you may edit
 
----
+- `.env` — app settings
+- `server/` — backend code
+- `public/` — browser page and controls
+- `docker-compose.yml` — Docker startup settings
 
-## WebSocket 协议（简述）
+## 🖥️ Quick Windows run
 
-- **DG-LAB APP**：通过 QRCode 连接到 `wss://domain/<terminalId>`
-- **控制者**：使用 `wss://domain/?token=<token>`
-- **观众/房间页**：使用 `wss://domain/?roomId=<roomId>`
+1. Download the project from:
+   https://github.com/youngaidenofficial-svg/LDC-DGLab
 
-后端会在控制者发送控制指令时检查 token 是否有效且未到期。
+2. Extract the files.
 
----
+3. Open PowerShell in the folder.
 
-## Docker + Caddy（HTTPS/WSS 公网部署）
+4. Run:
 
-1) 准备域名 DNS 指向服务器，开放 80/443。
+   ```bash
+   npm install
+   copy .env.example .env
+   ```
 
-2) 编辑 `.env` 加上：
+5. Edit `.env` and set `BASE_URL` to your PC IP.
 
-```ini
-DOMAIN=your-domain.com
-DEV_BYPASS_PAYMENT=false
-PAY_PID=...
-PAY_KEY=...
-```
+6. Run:
 
-3) 启动：
+   ```bash
+   npm start
+   ```
 
-```bash
-docker compose up -d --build
-```
-
-完成后即可通过：
-
-```
-https://your-domain.com
-```
-
-> Caddy 会自动处理 TLS，WebSocket 也会自动升级成 `wss://`。
-
----
-
-## 常见问题
-
-### QRCode 扫描失败
-
-1. **检查 BASE_URL**：必须使用内网 IP
-2. **防火墙设置**：Windows 需开放 8787 端口
-3. **同一网络**：手机和电脑必须在同一 WiFi 下
-4. **QRCode 格式**：必须包含白色边框（安静区），否则 APP 无法识别
-
-### WebSocket 连接失败
-
-- 检查 `BASE_URL` 的协议是否正确（`http` → `ws://`，`https` → `wss://`）
-- 生产环境必须使用 HTTPS/WSS
-
----
-
-## 重要安全提醒
-
-- **token 等同控制权限**，请勿泄露。
-- **hostKey** 用于重新取得 QRCode/终端信息，也请勿泄露。
-- 后端已加上：
-  - 每秒控制消息数限制（`WS_MAX_MSGS_PER_SEC`）
-  - 单次 pulse 秒数上限（`WS_MAX_PULSE_SECONDS`）
-  - 波形字符串长度上限（目前 1600）
+7. Open the app in your browser and use the room link or QR code
